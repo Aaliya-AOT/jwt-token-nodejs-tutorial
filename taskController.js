@@ -14,10 +14,18 @@ const createTask = (req, res) => {
 
 const getUserTask = (req,res)=>{
     const username = req.username;
+    const user = users[username];
+    const userDetails ={
+        username: user.username,
+        email: user.email,
+        phone: user.phone,
+        fullname: user.fullname,
+        tasks: user.tasks,
+    }
     if (!users[username]) {
         return res.status(400).send("User not found");
     }
-    res.status(200).json({ tasks: users[username].tasks });
+    res.status(200).json({ userDetails: userDetails});
 };
 
 module.exports = {
